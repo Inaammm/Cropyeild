@@ -1,0 +1,145 @@
+
+.background-image-container {
+    background-image: url('/static/image/bg2.jpg'); /* replace with your image URL */
+    background-size: cover; /* optional, but recommended for a full-screen background */
+    height: 100vh; /* optional, but recommended for a full-screen background */
+    width: 100vw; /* optional, but recommended for a full-screen background */
+  }
+body {
+    
+    background-color: rgb(234, 231, 231);
+    text-align: center;
+    font-family: 'Cabin', sans-serif;
+}
+
+.navbar {
+    background-color: rgba(82, 173, 198, 0.884); /* Change the navbar background color to black */
+    font-family: 'Playfair Display', serif;
+    font-weight: bolder;
+}
+
+
+.nav-link {
+    color: rgb(16, 17, 17);
+}
+
+/* Temperature button and display styling */
+.temperature-container {
+    display: flex;
+    justify-content: flex-end; /* Aligns the container to the right */
+    padding: 1rem; /* Adjust padding as needed */
+}
+
+.temperature-item {
+    display: flex;
+    align-items: center;
+}
+
+#temperature-display {
+    margin-left: 10px; /* Adjust spacing between button and display */
+}
+
+
+
+
+
+
+.text-uppercase, .submission-text, .legend {
+    color: rgb(22, 21, 21);
+}
+
+.reference {
+    text-align: center;
+}
+
+.northkeysLogo {
+    position: relative;
+    right: 70px;
+}
+
+.logo {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+.jumbotron {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    color: rgb(8, 8, 8);
+    /* right: 40px; */
+}
+
+.jumbo-text {
+    margin-top: 30px;
+}
+
+.display-4 {
+    color: white;
+}
+
+.problem-statement {
+    color: white;
+}
+
+.img-fluid {
+    margin-bottom: 20px;
+    image-orientation: center;
+}
+
+.card-body {
+    background-color: rgb(70, 68, 68);
+    color: white;
+    font-weight: bolder;
+}
+
+.card:hover {
+    background-color: rgba(0,0,0,0,0.8);
+    box-shadow: 0 8px 16px 4px rgba(255, 255, 255, 0.8);
+}
+
+.btn:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+::placeholder {
+    color: rgb(24, 24, 24);
+    text-align: center;
+}
+
+.btn {
+    margin-bottom: 20px;
+}
+
+/* .form-text {
+    color: Black;
+} */
+
+#small-text {
+    background-color: blacksmoke;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.my-contr {
+    color: Black;
+}
+
+.links {
+    color: white;
+    margin-bottom: 50px;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+    color: rgb(10, 10, 10);
+}
+
+.card-header {
+    color: rgb(6, 5, 5);
+}

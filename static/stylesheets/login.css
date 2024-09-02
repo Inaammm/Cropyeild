@@ -1,0 +1,135 @@
+/* Background and Layout */
+body {
+    background-image: url("/static/image/bg1.jpg"); /* Update with your image path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Ensure body content does not overlap with header */
+    padding-top: 60px; /* Adjust if needed to fit the header height */
+}
+
+/* Header with Scrolling Text */
+.scrolling-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 1000; /* Ensure it stays above other content */
+    padding: 5px 0; /* Adjusted padding for a smaller header */
+    font-size: 18px; /* Medium font size for balance */
+    font-weight: 700; /* Bold font weight */
+    text-transform: uppercase; /* Uppercase text for added impact */
+    letter-spacing: 1px; /* Slightly less space between letters */
+    border-bottom: 1px solid #28a745; /* Medium thickness green border at the bottom */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    background: linear-gradient(135deg, #444, #222); /* Gradient background for visual interest */
+}
+
+.scrolling-text {
+    display: inline-block;
+    padding: 1px; /* Reduced padding */
+    animation: scroll 10s linear infinite;
+    font-size: 20px; /* Medium font size for readability */
+    font-weight: 700; /* Bold text */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); /* Light shadow for better readability */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Container for the login form */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Heading Style */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Submit Button */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Flash Messages */
+.flash-message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.flash-message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash-message.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 600px) {
+    .login-container {
+        padding: 15px 20px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    input[type="submit"] {
+        font-size: 16px;
+    }
+}

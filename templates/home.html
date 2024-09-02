@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART-YIELD</title>
+
+    <!-- Bootstrap Attachments -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <style>
+        h5 {
+            color: black;
+            font-size: 1.25rem;
+        }
+
+        .background-image-container {
+            background-image: url("{{ url_for('static', filename='image/bg2.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            padding: 50px 20px;
+            color: white;
+            text-align: center;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .background-image-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .background-image-container .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-body input,
+        .card-body select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .btn-dark {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 20px;
+            background-color: #343a40;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .navbar {
+            background-color: rgba(82, 173, 198, 0.884);
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        #city-dropdown {
+            display: none;
+            margin-left: 15px;
+        }
+
+        #temperature-display {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">
+            <img src="/static/image/logo.jpg" height="80" width="80" alt="cropifyLogo"
+                class="d-inline-block align-middle mr-2 logo">
+            <span class="text-uppercase font-weight-bold">SMART-YIELD</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">Logout</a>
+                </li>
+            </ul>
+
+            <!-- Align the button to the right end of the navigation bar -->
+            <div class="navbar-right">
+                <button id="get-temperature-btn" class="btn btn-primary">Get Temperature</button>
+                <div id="city-dropdown" class="mt-3">
+                    <select id="city-select" class="form-select">
+                        <option value="Gundlupet">Gundlupet</option>
+                        <option value="Chamrajnagar">Chamrajnagar</option>
+                        <option value="Mysore">Mysore</option>
+                        <option value="Alathur">Alathur</option>
+                        <option value="Avadi">Avadi</option>
+                        <option value="Bommanahalli">Bommanahalli</option>
+                        <option value="Kadaburu">Kadaburu</option>
+                    </select>
+                </div>
+                <div id="temperature-display" class="mt-3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="background-image-container">
+        <div class="content">
+            <!-- Input Form -->
+            <div class="container">
+                <form action="/predict" method="post">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Water Level</h5>
+                                    <input type="text" name="water" placeholder="Water Level in soil" id="water-input"
+                                        required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ultra Violet</h5>
+                                    <input type="text" name="UV" placeholder="UV" id="uv" required="required">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Area</h5>
+                                    <input type="text" name="area" placeholder="Area in Acre" id="area-input"
+                                        required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Fertilizer Usage</h5>
+                                    <select name="fertilizer" id="fertilizer">
+                                        <option value="0">Cow Manure</option>
+                                        <option value="1">Compost</option>
+                                        <option value="2">Seaweed</option>
+                                        <option value="3">Emulsion</option>
+                                        <option value="4">Mushroom Compost</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pesticide</h5>
+                                    <input type="text" name="Pesticide" placeholder="Relative humidity in %"
+                                        id="Pesticide-input" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Region</h5>
+                                    <select name="Region" id="Region">
+                                        <option value="0">Gundlupet</option>
+                                        <option value="1">Chamrajnagar</option>
+                                        <option value="2">Mysore</option>
+                                        <option value="3">Alathur</option>
+                                        <option value="4">Avadi</option>
+                                        <option value="5">Bommanahalli</option>
+                                        <option value="6">Kadabur</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" value="Submit" class="btn btn-dark">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pzjw8f+ua7Kw1TIqOGiATWNbA7LrGi27q6BPE2eeFhi1B8gKjP5xNqL3Fe4WlA25" crossorigin="anonymous"></script>
+
+    <script>
+        document.getElementById('get-temperature-btn').onclick = function() {
+            document.getElementById('city-dropdown').style.display = 'block'; // Show the dropdown when the button is clicked
+        };
+
+        document.getElementById('city-select').onchange = function() {
+            const city = this.value;
+            fetch(`/get-temperature?city=${city}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.temperature) {
+                        document.getElementById('temperature-display').innerText = `Current Temperature in ${city}: ${data.temperature}°C`;
+                    } else {
+                        document.getElementById('temperature-display').innerText = 'Error fetching temperature data';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('temperature-display').innerText = 'Error fetching temperature data';
+                });
+        };
+    </script>
+</body>
+
+</html>
