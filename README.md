@@ -46,4 +46,4 @@ thorough feature selection was crucial for achieving model accuracy. These advan
 farmers and stakeholders to make more informed decisions, leading to improved crop management 
 and resource allocation. Ultimately, the project supports more efficient and sustainable cotton 
 production, benefiting both economic and environmental aspects of the
-industr
+industry
