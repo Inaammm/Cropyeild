@@ -2,6 +2,8 @@ SmartYield: Cotton Yield Prediction
 
 SmartYield is a sophisticated project aimed at predicting cotton yields using advanced machine learning and data mining techniques. This project integrates diverse datasets, including weather, soil, and satellite data, to build a reliable and interpretable yield prediction model.
 
+A Flask-based web application for farmers to find out the crops which can grow perfectly on their fields.
+
 OBJECTIVES
 
 The objective of the “Smart Yield” project is to enhance the accuracy of cotton yield prediction by 
